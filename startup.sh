@@ -5,7 +5,7 @@ alias ipython="python -m IPython --no-banner --config /home/coderpad/notconfig.p
 
 $HOME/.local/bin/uv init --no-package --no-managed-python --python $(which python)
 
-$HOME/.local/bin/uv add --no-sync --no-cache --no-managed-python --python $(which python) ipython ruff polars plotnine pyarrow requests numpy
+$HOME/.local/bin/uv add --no-sync --no-cache --no-managed-python --python $(which python) ipython ruff polars plotnine pyarrow requests numpy ordered-set sortedcontainers
 
 mkdir -p $HOME/.local/lib/python3.12/site-packages
 
@@ -38,6 +38,7 @@ c.TerminalInteractiveShell.separate_out = ''
 EOF
 
 cat <<EOF > $HOME/app/src/main.example.py
+# !pkill -9 -f "node.*pyright"
 import sys
 import pathlib
 import requests
@@ -51,6 +52,13 @@ sys.path.append(str(pathlib.Path("/home/coderpad/.local/bin")))
 userlibs = f"/home/coderpad/.local/lib/python{sys.version_info.major}.{sys.version_info.minor}/site-packages/"
 sys.path.append(userlibs)
 
+## Python's missing Data Structures
+# from collections import deque
+# # Create a circular buffer with max length 5
+# buffer = deque(maxlen=5) # buffer.append, buffer.pop(), buffer.lpop()
+# for i in range(0)
+# from ordered_set import OrderedSet # order of set insertion
+# from sortedcontainers import SortedList # numeric order of value
 
 def packages_avail():
   (ggplot(DataFrame({"x":[1], "y": [2]}), aes(x='x', y='y')) + geom_point()).save("test.png", verbose = False)
