@@ -37,7 +37,7 @@ c.TerminalInteractiveShell.separate_in = ''
 c.TerminalInteractiveShell.separate_out = ''
 EOF
 
-cat <<EOF > $HOME/app/main.py
+cat <<EOF > $HOME/app/src/main.py
 import sys
 import pathlib
 import requests
