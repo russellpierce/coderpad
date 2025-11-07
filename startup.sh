@@ -39,10 +39,15 @@ EOF
 
 cat <<EOF > $HOME/app/src/main.example.py
 # !pkill -9 -f "node.*pyright"
-LogLevel = 0
 LogExcludeParts = set()
-def log(t, level = 3, part = "NotSpecified"):
-    print(t) if level >= LogLevel and part not in LogExcludeParts else None
+INFO = 20
+DEBUG = 30
+WARNING = 30
+ERROR = 40
+MinLogLevel = INFO
+# f-strings eager eval, so inefficent for logging but easy
+def log(t, level = DEBUG, part = "NotSpecified"):
+    print(t) if level >= MinLogLevel and part not in LogExcludeParts else None
 
 import sys
 import pathlib
